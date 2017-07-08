@@ -8,7 +8,7 @@ module.exports = class Eval extends Command {
 			aliases: ['ev'],
 			botPerms: ['EMBED_LINKS'],
 			usage: '<expression:str>',
-			description: 'Evaluates arbitrary Javascript. Reserved for bot owner.'
+			description: 'Evaluates arbitrary Javascript.'
 		});
 	}
 
