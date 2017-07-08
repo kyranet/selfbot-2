@@ -10,8 +10,8 @@ module.exports = class Reload extends Command {
 	}
 
 	async run(msg, [name]) {
-		if (this.client.commands.reload(name)) return msg.edit(`Reloaded: ${name}`);
-		return msg.edit(`Couldn't find: ${name}`);
+		if (this.client.commands.reload(name)) return msg.alert(`Reloaded: ${name}`);
+		return msg.alert(`Couldn't find: ${name}`);
 	}
 
 };

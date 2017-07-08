@@ -10,7 +10,8 @@ module.exports = class Restart extends Command {
 	}
 
 	async run(msg) {
-		await msg.edit('Rebooting...').catch(console.error);
+		await msg.say('Rebooting...');
+		await msg.delete(1000);
 		process.exit();
 	}
 

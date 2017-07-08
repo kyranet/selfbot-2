@@ -1,3 +1,4 @@
+require('./Extendables');
 const { Client, RichEmbed } = require('discord.js');
 const rethink = require('rethinkdbdash');
 const moment = require('moment');

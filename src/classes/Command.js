@@ -15,7 +15,6 @@ module.exports = class Command {
 		this.parsedUsage = new ParsedUsage(client, this);
 	}
 
-
 	async _run(msg, args) {
 		try {
 			await this.hasPermissions(msg);

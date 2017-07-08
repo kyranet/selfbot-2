@@ -33,7 +33,7 @@ module.exports = class Info extends Command {
 			], true)
 			.setFooter(`Running AoBot v ${require('../../package.json').version} based on Discord.JS v ${Discord.version}`, this.client.user.avatarURL);
 
-		return msg.edit({ embed });
+		return msg.alert({ embed });
 	}
 
 };
