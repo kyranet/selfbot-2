@@ -22,7 +22,6 @@ module.exports = class Command {
 			const params = await new Params(this.client, msg, this, args.split(this.usageDelim)).validateArgs();
 			await this.run(msg, params);
 		} catch (err) {
-			console.log(err);
 			msg.channel.send(err.stack ? `\`\`\`prolog\n${err.stack}\`\`\`` : err);
 		}
 	}

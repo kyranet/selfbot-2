@@ -23,7 +23,7 @@ module.exports = class AoBot extends Client {
 		this.on('log', this._log.bind(this));
 		this.on('error', data => this._log(data, 'error'));
 		this.on('warn', data => this._log(data, 'warn'));
-		this.on('debug', data => this._log(data, 'debug'));
+		// this.on('debug', data => this._log(data, 'debug'));
 	}
 
 	async login(token) {
