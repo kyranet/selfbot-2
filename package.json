@@ -1,0 +1,16 @@
+{
+  "name": "aobot",
+  "version": "0.0.1",
+  "description": "A Discord Selfbot",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "forever src/server.js"
+  },
+  "author": "BDISTIN",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "github:hydrabolt/discord.js#11.1-dev",
+    "fs-nextra": "^0.2.0"
+  }
+}
