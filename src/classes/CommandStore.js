@@ -36,7 +36,9 @@ module.exports = class CommandStore {
 		this.unregister(command);
 		const path = command.dir;
 		const Cmd = require(path);
-		this.register(new Cmd(this.client, path));
+		const cmd = new Cmd(this.client, path);
+		this.register(cmd);
+		if (cmd.init) cmd.init();
 		delete require.cache[require.resolve(path)];
 		return true;
 	}

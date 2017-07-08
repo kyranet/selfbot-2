@@ -4,29 +4,37 @@ module.exports = class Emote extends Command {
 
 	constructor(...args) {
 		super(...args, 'emote', {
-			usage: '<emote:str> [message:str] [...]',
-			usageDelim: ' ',
-			description: 'Reboots the bot.'
+			aliases: ['tag'],
+			usage: '[add|remove] <emote:str> [message:str]',
+			usageDelim: ', ',
+			description: 'Shows tags.'
 		});
-		this.emotes = {
-			konami: ':arrow_up: :arrow_up: :arrow_down: :arrow_down: :arrow_left: :arrow_right: :arrow_left: :arrow_right: :b: :a:',
-			lenny: '( ͡° ͜ʖ ͡°)',
-			shrug: '¯\\_(ツ)_/¯',
-			justright: '✋😩👌',
-			tableflip: '(╯°□°）╯︵ ┻━┻',
-			unflip: '┬──┬﻿ ノ( ゜-゜ノ)',
-			shades: '(⌐■_■)',
-			shadeflip: '(⌐■_■)╯︵ ┻━┻',
-			spaghetti: '\\ev function decode() {\n		return String.fromCharCode(message[1], message[2], message[3], message[4], message[5], message[6], message[7]);\n}\nvar message = [];\nfor(var i=0; i<8; i++) {\n		message[i] = Math.round(-0.533333488*Math.pow(i, 6) + 12.72500372*Math.pow(i, 5) - 119.6250353*Math.pow(i, 4) + 561.9585003*Math.pow(i, 3) - 1375.842075*Math.pow(i, 2) + 1645.317147*i - 641.0002156);\n}\ndecode();',
-			sniper: '▄︻̷̿┻̿═━一',
-			doubleflip: '┻━┻︵ (°□°)/ ︵ ┻━┻'
-		};
+		this.emotes = null;
 	}
 
-	async run(msg, [emote, ...suffix]) {
+	async run(msg, [config, emote, suffix]) {
 		msg.delete();
-		const postSuffix = suffix.join(' ');
-		if (emote in this.emotes) msg.channel.sendMessage(`${this.emotes[emote]} ${postSuffix}`);
+		if (config) return msg.channel.send(this[config](emote, suffix));
+		const tag = this.emotes.get(emote);
+		if (tag) return msg.channel.sendMessage(`${tag} ${suffix || ''}`);
+		return null;
+	}
+
+	add(name, message) {
+		this.emotes.set(name, message);
+		this.client.db.table('tags').insert({ tag: name, data: message }).run();
+		return `Added \`${name}\` tag as: \`\`\`${message}\`\`\``;
+	}
+
+	remove(name) {
+		this.emotes.delete(name);
+		this.client.db.table('tags').getAll(name, { index: 'tag' }).delete().run();
+		return `Removed \`${name}\` tag`;
+	}
+
+	async init() {
+		const emotes = await this.client.db.table('tags').pluck('tag', 'data');
+		this.emotes = new Map(emotes.map(val => [val.tag, val.data]));
 	}
 
 };

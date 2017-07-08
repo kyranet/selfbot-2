@@ -1,8 +1,8 @@
-const { token, pinChannel, prefix } = require('../conf');
+const { token, rethink } = require('../conf');
 const AoBot = require('./classes/Client');
 const client = new AoBot({
 	discord: {},
-	config: { prefix, pinChannel }
+	rethink
 });
 
 client.login(token);

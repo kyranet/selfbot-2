@@ -10,7 +10,10 @@
   "author": "BDISTIN",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^2.0.1",
     "discord.js": "github:hydrabolt/discord.js#11.1-dev",
-    "fs-nextra": "^0.2.0"
+    "fs-nextra": "^0.2.0",
+    "moment": "^2.18.1",
+    "rethinkdbdash": "^2.3.29"
   }
 }

@@ -8,13 +8,7 @@ module.exports = class Takenote extends Command {
 			description: 'Takes note of the message based on id',
 			usage: '<Message:msg>'
 		});
-		this._pinChannel = null;
-	}
-
-	get pinChannel() {
-		if (this._pinChannel) return this._pinChannel;
-		this._pinChannel = this.client.channels.get(this.client.config.pinChannel);
-		return this._pinChannel;
+		this.pinChannel = null;
 	}
 
 	async run(msg, [message]) {
@@ -27,6 +21,10 @@ module.exports = class Takenote extends Command {
 			.setTimestamp(message.createdAt);
 
 		this.pinChannel.send({ embed });
+	}
+
+	async init() {
+		this.pinChannel = this.client.channels.get(this.client.config.pinChannel);
 	}
 
 };
