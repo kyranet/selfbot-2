@@ -9,6 +9,10 @@ module.exports = class CommandStore {
 		this.aliases = new Collection();
 	}
 
+	get help() {
+		return this.commands.map(command => ({ name: command.name, usage: command.parsedUsage.fullUsage, description: command.description }));
+	}
+
 	get(name) {
 		return this.commands.get(name) || this.commands.get(this.aliases.get(name));
 	}

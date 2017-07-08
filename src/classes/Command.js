@@ -33,4 +33,8 @@ module.exports = class Command {
 		throw `Missing the following permissions: ${missing.join(', ')}`;
 	}
 
+	codeBlock(lang, expression) {
+		return `\`\`\`${lang}\n${expression}\`\`\``;
+	}
+
 };

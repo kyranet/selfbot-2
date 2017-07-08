@@ -51,8 +51,4 @@ module.exports = class Eval extends Command {
 		}
 	}
 
-	codeBlock(lang, expression) {
-		return `\`\`\`${lang}\n${expression}\`\`\``;
-	}
-
 };

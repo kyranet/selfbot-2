@@ -8,10 +8,7 @@ module.exports = class ParsedUsage {
 		this.usageString = command.usage;
 		this.tags = this.parseUsage();
 		this.nearlyFullUsage = `${this.commands}${this.deliminatedUsage}`;
-	}
-
-	fullUsage(msg) {
-		return `${msg.prefix.length !== 1 ? `${msg.prefix} ` : msg.prefix}${this.nearlyFullUsage}`;
+		this.fullUsage = this.client.config.prefix + this.nearlyFullUsage;
 	}
 
 	parseUsage() {
