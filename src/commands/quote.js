@@ -18,7 +18,7 @@ module.exports = class Quote extends Command {
 			.setDescription(quote.content)
 			.setTimestamp(quote.createdAt);
 
-		msg.say(content, { embed });
+		return msg.say(content, { embed });
 	}
 
 };

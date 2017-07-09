@@ -21,7 +21,7 @@ module.exports = class Command {
 			const params = await new Params(this.client, msg, this, args.split(this.usageDelim)).validateArgs();
 			await this.run(msg, params);
 		} catch (err) {
-			msg.channel.send(err.stack ? `\`\`\`prolog\n${err.stack}\`\`\`` : err);
+			msg.say(err.stack ? this.codeBlock('prolog', err.stack) : err);
 		}
 	}
 
@@ -32,7 +32,7 @@ module.exports = class Command {
 	}
 
 	codeBlock(lang, expression) {
-		return `\`\`\`${lang}\n${expression}\`\`\``;
+		return `\`\`\`${lang}\n${expression || '\u200b'}\`\`\``;
 	}
 
 };

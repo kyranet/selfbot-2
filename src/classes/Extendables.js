@@ -34,4 +34,4 @@ const applyToClass = (structure, props) => {
 	}
 };
 
-applyToClass(Message, ['nuke', 'alert']);
+applyToClass(Message, ['nuke', 'alert', 'say']);

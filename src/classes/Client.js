@@ -46,7 +46,8 @@ module.exports = class AoBot extends Client {
 		const args = msg.content.slice(this.config.prefix.length).trim().split(' ');
 		const commandName = args.shift().toLowerCase();
 		const command = this.commands.get(commandName);
-		if (command) command._run(msg, args.join(' '));
+		if (!command) return;
+		command._run(msg, args.join(' '));
 		this.emit('log', `${commandName}(${args.join(' ')})`);
 	}
 

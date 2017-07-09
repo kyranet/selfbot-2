@@ -20,7 +20,7 @@ module.exports = class Takenote extends Command {
 			.setDescription(message.content)
 			.setTimestamp(message.createdAt);
 
-		this.pinChannel.send({ embed });
+		return this.pinChannel.send({ embed });
 	}
 
 	async init() {
