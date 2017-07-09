@@ -35,4 +35,12 @@ module.exports = class Command {
 		return `\`\`\`${lang}\n${expression || '\u200b'}\`\`\``;
 	}
 
+	run() {
+		// Defined in extension Classes
+	}
+
+	init() {
+		// Optionally defined in extension Classes
+	}
+
 };

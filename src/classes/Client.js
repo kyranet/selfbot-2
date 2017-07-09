@@ -34,9 +34,7 @@ module.exports = class AoBot extends Client {
 	}
 
 	async _ready() {
-		this.commands.commands.forEach(command => {
-			if (command.init) command.init();
-		});
+		this.commands.commands.forEach(command => command.init());
 		this.truelyReady = true;
 		this._log(`Ready: ${this.guilds.size} guilds, ${this.channels.size} channels, ${this.users.size} users.`);
 	}

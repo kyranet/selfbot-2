@@ -8,6 +8,7 @@ module.exports = class Exec extends Command {
 		super(...args, 'exec', {
 			aliases: [],
 			description: 'Executes a command line arg.',
+			botPerms: ['EMBED_LINKS'],
 			usage: '<command:str>'
 		});
 	}
