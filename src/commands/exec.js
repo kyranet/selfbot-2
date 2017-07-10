@@ -17,11 +17,11 @@ module.exports = class Exec extends Command {
 		const { stdout, stderr } = await exec(command);
 
 		const embed = new this.client.RichEmbed()
-            .setTitle('Exec')
-            .addField('STDOUT', Command.codeBlock('prolog', stdout))
-            .addField('STDERR', Command.codeBlock('prolog', stderr))
-            .setTimestamp()
-            .setFooter('', msg.author.avatarURL);
+			.setTitle('Exec')
+			.addField('STDOUT', Command.codeBlock('prolog', stdout))
+			.addField('STDERR', Command.codeBlock('prolog', stderr))
+			.setTimestamp()
+			.setFooter('', msg.author.avatarURL);
 
 		return msg.alert({ embed });
 	}

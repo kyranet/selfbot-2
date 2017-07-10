@@ -1,6 +1,7 @@
 const Command = require('../classes/Command');
 
 module.exports = class Quote extends Command {
+
 	constructor(...args) {
 		super(...args, 'quote', {
 			aliases: ['pin'],
@@ -18,4 +19,5 @@ module.exports = class Quote extends Command {
 			.setTimestamp(quote.createdAt);
 		return msg.say(content || '', { embed });
 	}
+
 };
