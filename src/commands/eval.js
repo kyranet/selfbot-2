@@ -14,8 +14,7 @@ module.exports = class Eval extends Command {
 
 	async run(msg, [expression]) {
 		const client = this.client;
-		if (expression === '') return msg.say('doh!');
-		if (/token/gi.test(msg.content)) return msg.say('doh!');
+		if (expression === '' || /token/gi.test(msg.content)) return msg.say('doh!');
 		try {
 			let evaled = eval(expression);
 			if (evaled instanceof Promise) evaled = await evaled;
@@ -26,9 +25,7 @@ module.exports = class Eval extends Command {
 
 			if (evaled === null) evaled = 'null';
 			if (evaled === undefined) evaled = 'undefined';
-			if (evaled === '') evaled = '\u200b';
-			if (insp === '[]') evaled = '\u200b';
-			if (insp === '{}') evaled = '\u200b';
+			if (evaled === '' || insp === '[]' || insp === '{}') evaled = '\u200b';
 
 			const embed = new client.RichEmbed()
 				.setColor(0x00ff00)
