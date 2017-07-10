@@ -1,7 +1,6 @@
 const Command = require('../classes/Command');
 
 module.exports = class Quote extends Command {
-
 	constructor(...args) {
 		super(...args, 'quote', {
 			aliases: ['pin'],
@@ -17,8 +16,6 @@ module.exports = class Quote extends Command {
 			.setColor(quote.member ? quote.member.highestRole.color : 'RANDOM')
 			.setDescription(quote.content)
 			.setTimestamp(quote.createdAt);
-
-		return msg.say(content, { embed });
+		return msg.say(content || '', { embed });
 	}
-
 };

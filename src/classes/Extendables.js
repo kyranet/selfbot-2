@@ -4,7 +4,6 @@ const sleep = promisify(setTimeout);
 
 
 class Extendables {
-
 	async nuke(time = 0) {
 		if (time === 0) return this.delete();
 		const count = this.edits.length;
@@ -20,12 +19,11 @@ class Extendables {
 		return this.nuke(this.client.config.alertTime);
 	}
 
-	say(data) {
+	say(...data) {
 		const msg = this.channel.messages.get(this.id);
-		if (msg) return this.edit(data);
-		return this.channel.send(data);
+		if (msg) return this.edit(...data);
+		return this.channel.send(...data);
 	}
-
 }
 
 const applyToClass = (structure, props) => {
