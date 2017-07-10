@@ -1,4 +1,5 @@
 const Command = require('../classes/Command');
+const { Collection } = require('discord.js');
 
 module.exports = class Emote extends Command {
 
@@ -15,8 +16,9 @@ module.exports = class Emote extends Command {
 	async run(msg, [config, emote, suffix]) {
 		msg.delete();
 		if (config) return msg.channel.send(this[config](emote, suffix));
+		if (emote === 'list') return msg.channel.send(this.emotes.keyArray().join(', '));
 		const tag = this.emotes.get(emote);
-		if (tag) return msg.channel.sendMessage(`${tag} ${suffix || ''}`);
+		if (tag) return msg.channel.send(`${tag} ${suffix || ''}`);
 		return null;
 	}
 
@@ -34,7 +36,7 @@ module.exports = class Emote extends Command {
 
 	async init() {
 		const emotes = await this.client.db.table('tags').pluck('tag', 'data');
-		this.emotes = new Map(emotes.map(val => [val.tag, val.data]));
+		this.emotes = new Collection(emotes.map(val => [val.tag, val.data]));
 	}
 
 };
