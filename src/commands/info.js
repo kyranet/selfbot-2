@@ -2,6 +2,7 @@ const Command = require('../classes/Command');
 const os = require('os');
 const moment = require('moment');
 const Discord = require('discord.js');
+const package = require('../../package.json');
 
 module.exports = class Info extends Command {
 
@@ -29,9 +30,9 @@ module.exports = class Info extends Command {
 				`**Guilds:** ${this.client.guilds.size.toLocaleString()}`,
 				`**Channels:** ${this.client.channels.filter(chan => chan.type === 'text').size.toLocaleString()}`,
 				`**DM Channels:** ${this.client.channels.filter(chan => chan.type === 'dm').size.toLocaleString()}`,
-				`**Users:** ${this.client.users.size.toLocaleString()}`
+				`**Users:** ${this.client.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString()}`
 			], true)
-			.setFooter(`Running AoBot v ${require('../../package.json').version} based on Discord.JS v ${Discord.version}`, this.client.user.avatarURL);
+			.setFooter(`Running AoBot v${package.version} based on Discord.JS v${Discord.version}`, this.client.user.avatarURL);
 
 		return msg.alert({ embed });
 	}
