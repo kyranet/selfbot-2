@@ -15,22 +15,22 @@ module.exports = class Emote extends Command {
 
 	async run(msg, [config, emote, suffix]) {
 		msg.delete();
-		if (config) return msg.channel.send(this[config](emote, suffix));
+		if (config) return msg.channel.send(await this[config](emote, suffix));
 		if (emote === 'list') return msg.channel.send(this.emotes.keyArray().join(', '));
 		const tag = this.emotes.get(emote);
 		if (tag) return msg.channel.send(`${tag} ${suffix || ''}`);
 		return null;
 	}
 
-	add(name, message) {
+	async add(name, message) {
 		this.emotes.set(name, message);
-		this.client.db.table('tags').insert({ tag: name, data: message }).run();
+		await this.client.db.table('tags').insert({ tag: name, data: message }).run();
 		return `Added \`${name}\` tag as: \`\`\`${message}\`\`\``;
 	}
 
-	remove(name) {
+	async remove(name) {
 		this.emotes.delete(name);
-		this.client.db.table('tags').getAll(name, { index: 'tag' }).delete().run();
+		await this.client.db.table('tags').getAll(name, { index: 'tag' }).delete().run();
 		return `Removed \`${name}\` tag`;
 	}
 
