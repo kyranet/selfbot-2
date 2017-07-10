@@ -4,7 +4,6 @@ module.exports = class Takenote extends Command {
 
 	constructor(...args) {
 		super(...args, 'takenote', {
-			aliases: ['pin'],
 			description: 'Takes note of the message based on id',
 			usage: '<Message:msg>'
 		});
