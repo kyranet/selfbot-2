@@ -32,10 +32,10 @@ module.exports = class Eval extends Command {
 
 			const embed = new client.RichEmbed()
 				.setColor(0x00ff00)
-				.addField('EVAL:', this.codeBlock('js', expression))
+				.addField('EVAL:', Command.codeBlock('js', expression))
 				.addField('Evaluates to:', evaled);
 
-			if (evaled instanceof Object) embed.addField('Inspect:', this.codeBlock('js', insp));
+			if (evaled instanceof Object) embed.addField('Inspect:', Command.codeBlock('js', insp));
 			else embed.addField('Type:', type);
 
 			return msg.alert({ embed });

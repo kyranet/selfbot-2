@@ -21,7 +21,7 @@ module.exports = class Command {
 			const params = await new Params(this.client, msg, this, args.split(this.usageDelim)).validateArgs();
 			await this.run(msg, params);
 		} catch (err) {
-			msg.say(err.stack ? this.codeBlock('prolog', err.stack) : err);
+			msg.say(err.stack ? Command.codeBlock('prolog', err.stack) : err);
 		}
 	}
 
@@ -31,16 +31,16 @@ module.exports = class Command {
 		throw `Missing the following permissions: ${missing.join(', ')}`;
 	}
 
-	codeBlock(lang, expression) {
-		return `\`\`\`${lang}\n${expression || '\u200b'}\`\`\``;
-	}
-
 	run() {
 		// Defined in extension Classes
 	}
 
 	init() {
 		// Optionally defined in extension Classes
+	}
+
+	static codeBlock(lang, expression) {
+		return `\`\`\`${lang}\n${expression || '\u200b'}\`\`\``;
 	}
 
 };

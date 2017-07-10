@@ -7,7 +7,7 @@ module.exports = class Help extends Command {
 	}
 
 	async run(msg) {
-		return msg.alert(this.codeBlock('asciidoc', this.client.commands.help.map(entry => `= ${entry.name} =\nUsage:: ${entry.usage}\nDescription:: ${entry.description}\n`).join('\n')));
+		return msg.alert(Command.codeBlock('asciidoc', this.client.commands.help.map(entry => `= ${entry.name} =\nUsage:: ${entry.usage}\nDescription:: ${entry.description}\n`).join('\n')));
 	}
 
 };

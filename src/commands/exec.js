@@ -18,8 +18,8 @@ module.exports = class Exec extends Command {
 
 		const embed = new this.client.RichEmbed()
             .setTitle('Exec')
-            .addField('STDOUT', this.codeBlock('prolog', stdout))
-            .addField('STDERR', this.codeBlock('prolog', stderr))
+            .addField('STDOUT', Command.codeBlock('prolog', stdout))
+            .addField('STDERR', Command.codeBlock('prolog', stderr))
             .setTimestamp()
             .setFooter('', msg.author.avatarURL);
 
