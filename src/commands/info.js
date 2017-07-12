@@ -15,6 +15,7 @@ module.exports = class Info extends Command {
 	}
 
 	async run(msg) {
+		delete require.cache[require.resolve('../../package.json')];
 		const memUsed = Math.round(process.memoryUsage().heapUsed / 1024 / 1024);
 		const totalMem = Math.round(os.totalmem() / 1024 / 1024);
 		const percentUsed = Math.round((memUsed / totalMem) * 100);
@@ -30,9 +31,9 @@ module.exports = class Info extends Command {
 				`**Guilds:** ${this.client.guilds.size.toLocaleString()}`,
 				`**Channels:** ${this.client.channels.filter(chan => chan.type === 'text').size.toLocaleString()}`,
 				`**DM Channels:** ${this.client.channels.filter(chan => chan.type === 'dm').size.toLocaleString()}`,
-				`**Users:** ${this.client.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString()}`
+				`**Users:** ${this.client.users.size.toLocaleString()}`
 			], true)
-			.setFooter(`Running AoBot v${package.version} based on Discord.JS v${Discord.version}`, this.client.user.avatarURL);
+			.setFooter(`Running AoBot v${require('../../package.json').version} based on Discord.JS v${Discord.version}`, this.client.user.avatarURL);
 
 		return msg.alert({ embed });
 	}
