@@ -2,7 +2,6 @@ const Command = require('../classes/Command');
 const os = require('os');
 const moment = require('moment');
 const Discord = require('discord.js');
-const package = require('../../package.json');
 
 module.exports = class Info extends Command {
 
